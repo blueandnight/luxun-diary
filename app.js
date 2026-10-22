@@ -642,12 +642,6 @@
       toggle.textContent = state.rawMode ? "显示阅读整理" : "显示馆方原始字符";
       toggle.setAttribute("aria-pressed", state.rawMode ? "true" : "false");
     }
-    var note = $("text-tool-note");
-    if (note) {
-      note.textContent = state.rawMode
-        ? "原始字符按馆方网页保留，含软换行、半角标点与孤立 p。"
-        : "阅读整理：合并馆方软换行，标出 p 与私用区字符；不改动数据层。";
-    }
   }
 
   function renderAnomalies(entry) {
