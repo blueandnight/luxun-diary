@@ -1,0 +1,34 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~
+
+# local/runtime
+.env
+.env.*
+!.env.example
+*.local
+*.log
+*.pid
+*.pid.*
+_site/
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# archives and browser artifacts
+*.zip
+*.7z
+*.rar
+.playwright/
+.puppeteer/
+*.har
+*.trace
+test-results/

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta name="description" content="鲁迅日记·百年前的今天：每天安静地读一段鲁迅 1912—1936 年现存日记原文；可按年份、日期浏览，并查看文献出处。">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'none'">
+  <meta property="og:title" content="鲁迅日记·百年前的今天">
+  <meta property="og:description" content="每天，安静地读一段鲁迅当天写下的日记。">
+  <meta property="og:type" content="website">
+  <title>鲁迅日记·百年前的今天</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232f4b3f'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%23f4f0e7' stroke-width='1.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="quote.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#diary">跳到日记正文</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="鲁迅日记·百年前的今天首页">
+      <span class="brand-mark" aria-hidden="true">迅</span>
+      <span>鲁迅日记<small>百年前的今天 · 1912—1936</small></span>
+    </a>
+    <div class="edition">
+      <label class="year-picker-label" for="year-select">年份</label>
+      <select id="year-select" class="year-select" aria-label="选择年份"></select>
+      <span class="edition-suffix">日记原文</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow" id="page-title">百年前的今天</p>
+        <h1 class="hero-date"><span id="entry-date">—</span></h1>
+        <p class="hero-today"><span id="entry-weekday">—</span><span class="hero-dot">·</span>今天（北京时间）<span id="today-actual">—</span></p>
+        <p id="year-note" class="year-note" hidden></p>
+      </div>
+    </section>
+
+    <section class="toolbar" aria-label="日记日期导航">
+      <div class="date-controls">
+        <button id="prev-day" class="arrow-button" type="button" aria-label="前一天">←</button>
+        <label class="date-picker-label" for="date-picker">选择日期</label>
+        <input id="date-picker" type="date" min="1912-05-05" max="1936-10-18">
+        <button id="next-day" class="arrow-button" type="button" aria-label="后一天">→</button>
+        <button id="today-button" class="today-button" type="button">回到今天</button>
+      </div>
+    </section>
+
+    <div id="notice" class="notice" role="status" hidden></div>
+
+    <section class="content-grid">
+      <article id="diary" class="diary-card" aria-labelledby="entry-date" hidden>
+        <div class="diary-heading compact-heading">
+          <div>
+            <p class="eyebrow">日记原文</p>
+            <p class="source-hint">馆方月度记录 · 按日序切分</p>
+          </div>
+          <div class="heading-badges">
+            <span id="no-activity-badge" class="status-badge" hidden>原文记“无事”</span>
+          </div>
+        </div>
+
+        <blockquote id="original-text" class="original-text"></blockquote>
+        <blockquote id="original-raw" class="original-text raw-text" hidden></blockquote>
+        <div class="text-tools">
+          <span id="text-tool-note" class="text-tool-note">原文按馆方网页转录。</span>
+          <button id="toggle-raw" class="text-tool" type="button" aria-pressed="false">显示馆方原始字符</button>
+        </div>
+        <p id="anomaly-note" class="anomaly-note" hidden></p>
+
+        <nav class="entry-nav" aria-label="相邻日条">
+          <button id="prev-entry" class="entry-nav-button" type="button">← 前一天</button>
+          <button id="next-entry" class="entry-nav-button" type="button">后一天 →</button>
+        </nav>
+
+        <footer class="entry-source">
+          <div class="source-line"><span class="source-label">文献出处</span><a id="official-source" href="http://www.luxunmuseum.com.cn/cx/" target="_blank" rel="noopener">北京鲁迅博物馆资料查询系统 ↗</a></div>
+          <div id="wikisource-line" class="source-line"><span class="source-label">对校</span><a id="wikisource-source" href="https://zh.wikisource.org/wiki/魯迅日記/日記十五" target="_blank" rel="noopener">维基文库《鲁迅日记·日记十五》↗</a><span class="source-hint">二手转录，仅供参校</span></div>
+          <div class="entry-actions">
+            <button id="copy-link" class="text-tool" type="button">复制本日链接</button>
+            <a href="DATA_AUDIT.md">数据说明</a>
+          </div>
+          <details class="source-details">
+            <summary>来源、校勘与数据说明</summary>
+            <dl id="source-details-body"></dl>
+            <div id="daily-notes" class="notes-block" hidden>
+              <div class="section-label"><span>校勘记录</span><span class="source-hint">与日记原文分开</span></div>
+              <ul id="notes-list"></ul>
+            </div>
+          </details>
+        </footer>
+
+        <section id="appendix-card" class="appendix-card" hidden>
+          <div class="section-label"><span>附录</span><span class="source-hint">不并入当日日记</span></div>
+          <h3 id="appendix-title">—</h3>
+          <p id="appendix-note" class="appendix-note"></p>
+          <details class="appendix-details">
+            <summary>查看附录原文</summary>
+            <blockquote id="appendix-text" class="original-text appendix-text"></blockquote>
+          </details>
+          <p class="appendix-source"><a id="appendix-source" href="#" target="_blank" rel="noopener">馆方月页 ↗</a></p>
+        </section>
+      </article>
+
+      <article id="missing-card" class="diary-card missing-card" hidden aria-live="polite">
+        <p class="eyebrow">RECORD STATUS</p>
+        <h2 id="missing-date">—</h2>
+        <p id="missing-status" class="missing-status"></p>
+        <p id="missing-detail" class="missing-detail"></p>
+        <div id="missing-neighbors" class="missing-neighbors"></div>
+        <div class="missing-actions">
+          <button id="missing-today" class="today-button" type="button">回到今天</button>
+          <button id="missing-month-start" class="today-button" type="button">查看本月有记录的日子</button>
+        </div>
+        <footer class="entry-source">
+          <small>本项目只收录馆方 1926 年现有月页中的日条。某个日期没有找到记录时，页面不会自动展示另一个日期来冒充“百年前的今天”。</small>
+          <div class="source-line"><span class="source-label">馆方来源</span><a id="missing-source" href="http://www.luxunmuseum.com.cn/cx/works.php?lid=1926&tid=3" target="_blank" rel="noopener">北京鲁迅博物馆资料查询系统 · 1926 年目录 ↗</a></div>
+        </footer>
+      </article>
+
+      <aside class="side-column" aria-label="可选阅读线索">
+        <details id="people-card" class="side-card side-fold">
+          <summary class="side-title">
+            <span class="side-icon">人</span>
+            <span class="side-heading">本日人物</span>
+            <span class="fold-hint" aria-hidden="true"></span>
+          </summary>
+          <p class="side-intro">原文中出现的称呼；展开后点击可看同称呼在全年其他日子的记录。</p>
+          <div id="people-tags" class="tag-list"><span class="muted">载入中…</span></div>
+        </details>
+        <details id="works-card" class="side-card side-fold">
+          <summary class="side-title">
+            <span class="side-icon work-icon">书</span>
+            <span class="side-heading">本日作品</span>
+            <span class="fold-hint" aria-hidden="true"></span>
+          </summary>
+          <p class="side-intro">原文中以《》标出的书名或篇名；展开后点击可看它在全年出现过的日子。</p>
+          <div id="work-tags" class="tag-list"><span class="muted">载入中…</span></div>
+        </details>
+        <section id="entity-card" class="side-card entity-card" hidden aria-live="polite">
+          <div class="side-title">
+            <span class="side-icon">引</span>
+            <h2 id="entity-title">相关原文</h2>
+            <button id="entity-close" class="entity-close" type="button" aria-label="关闭线索面板">×</button>
+          </div>
+          <p id="entity-description" class="entity-description"></p>
+          <p id="entity-note" class="entity-note" hidden></p>
+          <div id="entity-occurrences" class="occurrence-list"></div>
+          <p id="entity-footnote" class="entity-footnote">按原文称呼或书名出现的位置索引；不代表人物身份、版本或事件已考订。</p>
+        </section>
+      </aside>
+    </section>
+
+    <section class="month-strip" aria-labelledby="month-heading">
+      <div class="month-heading-row">
+        <div><p class="eyebrow" id="month-browse-label">BROWSE 1912—1936</p><h2 id="month-heading">1912 年 1 月</h2></div>
+        <div class="month-nav">
+          <button id="prev-month" class="today-button" type="button">← 上月</button>
+          <button id="next-month" class="today-button" type="button">下月 →</button>
+        </div>
+      </div>
+      <div id="month-tabs" class="month-tabs" role="group" aria-label="选择月份"></div>
+      <div id="calendar" class="calendar" role="group" aria-label="1926年日历"></div>
+      <div class="calendar-legend">
+        <span class="legend-item"><span class="legend-swatch current" aria-hidden="true"></span>当前日条</span>
+        <span class="legend-item" id="legend-today"><span class="legend-swatch today" aria-hidden="true"></span>今天对应</span>
+        <span class="legend-item"><span class="legend-dot" aria-hidden="true"></span>原文记“无事”</span>
+        <span class="legend-item"><span class="legend-swatch missing" aria-hidden="true"></span>无日条</span>
+      </div>
+      <details class="month-digest">
+        <summary id="month-digest-label">本月日记目录 · 31 天</summary>
+        <div id="month-digest" class="digest-list"></div>
+      </details>
+    </section>
+
+    <details id="explore-details" class="explore-section">
+      <summary class="explore-summary">
+        <span class="eyebrow">SECONDARY INDEX</span>
+        <span class="explore-title">人物与作品索引</span>
+        <span class="explore-note">可选 · 按原文称呼或书名检索</span>
+      </summary>
+      <div class="explore-body">
+        <p class="explore-intro">次级探索入口：只按原文称呼或书名号检索，不做人物身份或版本考订。</p>
+        <div class="index-tools">
+          <label for="people-filter">筛选人物 <input id="people-filter" type="search" placeholder="输入称呼，如 广平、小峰"></label>
+          <label for="works-filter">筛选作品 <input id="works-filter" type="search" placeholder="输入书名，如 语丝、莽原"></label>
+          <span id="index-count" class="index-count"></span>
+        </div>
+        <div class="index-grid">
+          <div class="index-block">
+            <h3>人物称呼 <small id="people-index-label">按出现天数排序</small></h3>
+            <div id="people-index" class="index-chips scrollable"></div>
+          </div>
+          <div class="index-block">
+            <h3>书名与篇名 <small id="works-index-label">按原文书名号提取</small></h3>
+            <div id="works-index" class="index-chips scrollable"></div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </main>
+
+  <footer class="page-footer">
+    <p>本地阅读版 · 1912—1936 现存日记 · 每日日记原文 · 不实时抓取馆方网站</p>
+    <p><a href="README.md">项目说明</a> · <a href="DATA_AUDIT.md">数据与校勘</a></p>
+  </footer>
+
+  <div id="live-status" class="visually-hidden" role="status" aria-live="polite"></div>
+  <noscript><div class="notice">本页需要 JavaScript 读取本地 JSON 数据。请在浏览器中启用 JavaScript，并使用本地静态服务器打开页面。</div></noscript>
+</body>
+</html>
