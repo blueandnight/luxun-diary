@@ -3,7 +3,6 @@
 
   var DATA_INDEX_URL = "data/years/index.json";
   var DATA_YEAR_URL = "data/years/";
-  var WIKISOURCE_URL = "https://zh.wikisource.org/wiki/魯迅日記";
   var MONTH_NAMES = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"];
   var WEEKDAYS = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
   var DAY_MS = 86400000;
@@ -780,8 +779,6 @@
       official.href = source.url;
       official.textContent = "馆方 " + state.selectedYear + " 年 " + entry.month + " 月页面 ↗";
     }
-    var wikisourceLine = $("wikisource-line");
-    if (wikisourceLine) wikisourceLine.hidden = state.selectedYear !== 1926;
   }
 
   function renderAppendix(entry) {
