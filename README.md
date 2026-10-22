@@ -6,11 +6,9 @@
 
 ## 在线阅读
 
-目标地址：
-
 `https://blueandnight.github.io/luxun-diary/`
 
-> 部署验证中；验证完成前不宣称已经上线。
+GitHub Pages 已部署，完整日记数据已包含在本仓库。
 
 ## 项目简介
 
